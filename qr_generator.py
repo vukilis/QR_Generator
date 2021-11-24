@@ -4,7 +4,7 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 import qrcode
 import webbrowser
-
+import plyer
 
 Window.size = (800, 600)
 Window.minimum_width, Window.minimum_height = Window.size
@@ -17,6 +17,13 @@ class MyLayout(ScreenManager):
             qr.make(fit=True)
             img = qr.make_image(fill='black', back_color='white')
             img.save(f"{self.ids.img_name.text}.png")
+            plyer.notification.notify(
+                title = 'QR Generator', message = 'QR code generated!' 
+            )
+        else:
+            plyer.notification.notify(
+                title = 'QR Generator', message = 'Please enter your url!' 
+            )
         print("Generate Button is pressed")
         
     def view_qr(self, app):
