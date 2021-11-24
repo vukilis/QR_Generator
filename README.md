@@ -15,7 +15,7 @@ python qr_generator.py
 **OR**
 
 **``
-Simple just open "Password Generator.exe" in "dist" directory
+Simple just open shortcut "QR Generator" in "QR Generator" directory
 ``**
 
 ## About

@@ -1,13 +1,24 @@
+from kivy.uix.floatlayout import FloatLayout
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.popup import Popup
 from kivy.core.window import Window
 from kivy.lang import Builder
 import qrcode
 import webbrowser
-import plyer
+from kivy.clock import Clock
 
 Window.size = (800, 600)
 Window.minimum_width, Window.minimum_height = Window.size
+
+class Progress(Popup):
+    
+    def __init__(self, **kwargs):
+        super(Progress, self).__init__(**kwargs)
+        Clock.schedule_once(self.dismiss_popup, 2)
+
+    def dismiss_popup(self, dt):
+        self.dismiss()
 
 class MyLayout(ScreenManager):
     def generate_qr_code(self, args):
@@ -17,13 +28,8 @@ class MyLayout(ScreenManager):
             qr.make(fit=True)
             img = qr.make_image(fill='black', back_color='white')
             img.save(f"{self.ids.img_name.text}.png")
-            plyer.notification.notify(
-                title = 'QR Generator', message = 'QR code generated!' 
-            )
-        else:
-            plyer.notification.notify(
-                title = 'QR Generator', message = 'Please enter your url!' 
-            )
+            popup = Progress()
+            popup.open()
         print("Generate Button is pressed")
         
     def view_qr(self, app):
@@ -42,7 +48,7 @@ class MyLayout(ScreenManager):
         'Portfolio': 'account',
         'Github': 'github'
     }
-
+    
 class QR_Generator(MDApp):  
     def callback(self, instance):
         if instance.icon == 'account':

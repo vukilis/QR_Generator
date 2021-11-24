@@ -1,3 +1,20 @@
+#:import Factory kivy.factory.Factory
+<Progress>:
+    size: root.width, root.height
+    auto_dismiss: True
+    size_hint: (None,None)
+    width: 200
+    height: 100
+    pos_hint: {"x":0, "top": 0.2}
+    title: "Message"
+    title_align: "center"
+    # separator_height: 0
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height 
+        Label: 
+            text: "QR code is generated!"
+
 <MyLayout>:
     Screen:
         name: 'first'
