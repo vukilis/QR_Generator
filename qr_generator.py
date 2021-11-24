@@ -43,7 +43,7 @@ class QR_Generator(MDApp):
         if instance.icon == 'github':
             webbrowser.open("https://github.com/vukilis")
     
-    Builder.load_file('box.kv', encoding='utf8')   
+    Builder.load_file('my.kv', encoding='utf8')   
     def build(self):
         self.icon = "images/logo.png"
         self.theme_cls.theme_style = "Dark"
