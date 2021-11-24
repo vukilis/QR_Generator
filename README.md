@@ -1,5 +1,5 @@
 ## Screenshot
-![Image of Yaktocat](https://raw.githubusercontent.com/vukilis/password_generator/main/assets/APP.png)
+![Image of Yaktocat](https://raw.githubusercontent.com/vukilis/QR_Generator/main/images/APP.png)
 
 ## Installation
 
