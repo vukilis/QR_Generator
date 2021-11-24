@@ -1,0 +1,116 @@
+#:import Factory kivy.factory.Factory
+<Progress>:
+    size: root.width, root.height
+    auto_dismiss: True
+    size_hint: (None,None)
+    width: 200
+    height: 100
+    pos_hint: {"x":0, "top": 0.2}
+    title: "Message"
+    title_align: "center"
+    # separator_height: 0
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height 
+        Label: 
+            text: "QR code is generated!"
+
+<MyLayout>:
+    Screen:
+        name: 'first'
+        md_bg_color: app.theme_cls.bg_light
+        MDToolbar:
+            title: 'QR Generator'
+            font_style: 'Roboto'
+            pos_hint: {'top':1}
+            elevation:2
+            anchor_title: "center"
+            MDIconButton:
+                id: button_first
+                halign: 'center'
+                icon: "arrow-right-bold"
+                pos_hint: {'top': root.y+0.9, 'x': 1}
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                on_release: root.show_second_page(root)
+        BoxLayout:
+            size_hint: (0.8,.1)
+            padding: "10dp"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75} 
+            elevation:3
+            MDTextField:
+                id: link_text
+                hint_text: 'Enter your url'
+                halign: "center"
+                font_size: 24
+
+        BoxLayout:
+            size_hint: (0.8,.1)
+            padding: "10dp"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65} 
+            elevation:3
+            MDTextField:
+                id: img_name
+                hint_text: 'Enter your qr image name'
+                halign: "center"
+                font_size: 24
+
+        BoxLayout:
+            size_hint: (.3,.3)
+            padding: "10dp"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4} 
+            elevation:4
+            AsyncImage:
+                id: qr_code_
+                source: 'images/preview.png'
+
+
+        MDFillRoundFlatButton:
+            text: 'GENERATE'
+            font_size: 16
+            pos_hint: {'center_x': 0.4, 'center_y': .1}
+            on_release: root.generate_qr_code(app)
+        
+        MDFillRoundFlatButton:
+            text: 'VIEW QR CODE'
+            font_size: 16
+            pos_hint: {'center_x': 0.6, 'center_y': .1}
+            on_release: root.view_qr(app)
+        
+        MDFloatingActionButtonSpeedDial:
+            data: root.data
+            root_button_anim: True
+            callback: app.callback
+#############################################################
+    Screen:
+        name: 'second'
+        md_bg_color: app.theme_cls.bg_light
+        MDToolbar:
+            id: toolbar
+            title: 'About'
+            font_style: 'Roboto'
+            pos_hint: {'top':1}
+            elevation:2
+            anchor_title: "center"
+            MDIconButton:
+                id: button_second
+                halign: 'center'
+                icon: "arrow-left-bold"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                on_release: root.show_first_page(root)
+        
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (.5,.5)
+            padding: "10dp"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5} 
+            elevation:4
+            
+            Label:
+                text:"I made this app as a project in purpose to learn python and kivy. This is app that I built to generate QR code."
+                font_size: 32
+                text_size: self.width, None
+
+
