@@ -15,7 +15,7 @@ python qr_generator.py
 **OR**
 
 **``
-Simple just open shortcut "QR Generator" in "QR Generator" directory
+Simple just open shortcut "QR Generator" in "QR Generator!" directory
 ``**
 
 ## About
